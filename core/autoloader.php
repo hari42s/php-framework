@@ -1,12 +1,20 @@
 <?php 
-spl_autoload_register('controllerAutoLoader');
+spl_autoload_register(function ($className) {
 
-function controllerAutoLoader($className) {
-    $path = "controllers/";
-    $file_ext = ".php";
-    $pathname = $path . $className . $file_ext;
+    $ext = ".php";
+    $sources = array(
+        "controllers/".$className.$ext, 
+        "models/".$className.$ext, 
+        "core/".$className.$ext, 
+        "router/".$className.$ext, 
+        "middlewares/".$className.$ext, 
+    );
 
-    include_once $pathname;
-}
+    foreach ($sources as $source) {
+        if (file_exists($source)) {
+            require_once $source;
+        } 
+    } 
+});
 
 ?>

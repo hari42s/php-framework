@@ -14,6 +14,14 @@
         <?=
         $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].
         $_SERVER['REQUEST_URI'];
+        
         ?>
     </h3>
+    <?php 
+    
+    if(isset($_SESSION)) {
+        '<p>'.var_dump($_SESSION).'</p>';
+    }
+
+    ?>
 </div>
